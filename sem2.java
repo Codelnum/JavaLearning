@@ -128,7 +128,4 @@ public class sem2 {
         }
         
     }
-
-    private static void getAbsolutePath(File item) {
-    }
 }

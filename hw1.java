@@ -59,25 +59,40 @@ public static void main(String[] args) {
 }
 
 */
+import java.util.logging.*;
+import java.io.IOException;
 
 public class hw1 {
 
     public static Scanner scan = new Scanner(System.in);
+    
+    
+ 
+    
 
-    public static void main(String[] args) {
-        // String answer = Asker();
-        while (true) {
-            String answer = Asker();
-            if (answer.equals("yes")) {
-                EnterNums();
-            } else {
-                System.out.println("Bye!");
-                break;
-            }
-            
-            
+    public static void main(String[] args) throws SecurityException, IOException {
+
+        Logger logger = Logger.getLogger(hw2.class.getName());
+        FileHandler fh = new FileHandler("Calc.log");
+        logger.addHandler(fh);
+        SimpleFormatter xml = new SimpleFormatter();
+        fh.setFormatter(xml);
+        logger.info("Start Logging"); 
+
+
+        String answer = Asker();
+        while (answer.equals("yes")) {
+            EnterNums();
+            answer = Asker();
         }
+        
+        System.out.println("Bye!");
+        logger.info("output bye");
+               
+
     }
+
+    
     public static void EnterNums() {
         
         System.out.println("Enter first num: ");
@@ -87,7 +102,7 @@ public class hw1 {
         System.out.println("Enter second num: ");
         double num2 = scan.nextDouble();
         double sum = Calc(num1, num2, op);
-        System.out.println(sum);    
+        System.out.println(sum);
     }
     
     public static String Asker() {
@@ -96,22 +111,23 @@ public class hw1 {
         return answ;
     }
         
-    
-        public static Double Calc(double num1, double num2, char op) {
-        double sum = 0;
+
+    public static Double Calc(double num1, double num2, char op) {
+    double sum = 0;
         switch(op) {
             case '+': sum = num1 + num2;
-               break;
+                break;
             case '-': sum = num1 - num2;
-               break;
+                break;
             case '*': sum = num1 * num2;
-               break;
+                break;
             case '/': sum = num1 / num2;
-               break;
+                break;
             default:  System.out.printf("Error! Enter correct operator");
         }
-        return sum;
     
+    return sum;
     }
+    
 }
     
