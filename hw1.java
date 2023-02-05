@@ -97,17 +97,22 @@ public class hw1 {
         
         System.out.println("Enter first num: ");
         double num1 = scan.nextDouble();
+        logger.info("num1 = "+ num1);
         System.out.println("Set operation(+ , - , * , / ): ");
         char op = scan.next().charAt(0);
+        logger.info("op = "+ op);
         System.out.println("Enter second num: ");
         double num2 = scan.nextDouble();
+        logger.info("num2 = "+ num2);
         double sum = Calc(num1, num2, op);
+        logger.info("sum = "+ sum);
         System.out.println(sum);
     }
     
     public static String Asker() {
         System.out.println("One more calc?(yes/no): ");
         String answ = scan.nextLine();
+        logger.info("Answer: "+answ);
         return answ;
     }
         
