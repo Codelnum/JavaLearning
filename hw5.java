@@ -1,6 +1,8 @@
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 
 
@@ -81,3 +83,69 @@ public class hw5 {
     }
 }
 */
+// Реализация пирамидальной сортировки на Java
+public class hw5 {
+    
+    public static void main(String args[])
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("enter arr num with space:  ");
+        String [] inString = scan.nextLine().split(" ");
+        int [] arr = Arrays.stream(inString).mapToInt(Integer::parseInt).toArray();;
+        scan.close();
+
+        hw5 ob = new hw5();
+        ob.sort(arr);
+
+        System.out.println("Sorted:");
+        printArray(arr);
+    }
+
+    public void sort(int arr[])
+    {
+        int n = arr.length;
+
+        for (int i = n / 2 - 1; i >= 0; i--)
+            MakeHeap(arr, n, i);
+   
+        for (int i=n-1; i>=0; i--)
+        {
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            MakeHeap(arr, i, 0);
+        }
+    }
+
+
+    void MakeHeap(int arr[], int n, int i)
+    {
+        int max = i; 
+        int LeftSide = 2*i + 1; 
+        int RightSide = 2*i + 2; 
+
+        if (LeftSide < n && arr[LeftSide] > arr[max])
+            max = LeftSide;
+
+        if (RightSide < n && arr[RightSide] > arr[max])
+            max = RightSide;
+        if (max != i)
+        {
+            int swap = arr[i];
+            arr[i] = arr[max];
+            arr[max] = swap;
+
+            MakeHeap(arr, n, max);
+        }
+    }
+
+    static void printArray(int arr[])
+    {
+        int n = arr.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(arr[i]+" ");
+        System.out.println();
+    }
+
+}
